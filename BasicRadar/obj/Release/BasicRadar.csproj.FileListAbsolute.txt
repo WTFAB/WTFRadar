@@ -1,0 +1,46 @@
+E:\visual studio 2015\Projects\BasicRadar\BasicRadar\bin\Release\BasicRadar.dll
+E:\visual studio 2015\Projects\BasicRadar\BasicRadar\bin\Release\BasicRadar.pdb
+E:\visual studio 2015\Projects\BasicRadar\BasicRadar\bin\Release\ArcheBuddy.dll
+E:\visual studio 2015\Projects\BasicRadar\BasicRadar\bin\Release\System.Windows.Interactivity.dll
+E:\visual studio 2015\Projects\BasicRadar\BasicRadar\bin\Release\Buddy.Store.dll
+E:\visual studio 2015\Projects\BasicRadar\BasicRadar\bin\Release\Buddy.Auth.dll
+E:\visual studio 2015\Projects\BasicRadar\BasicRadar\bin\Release\de\System.Windows.Interactivity.resources.dll
+E:\visual studio 2015\Projects\BasicRadar\BasicRadar\bin\Release\en\System.Windows.Interactivity.resources.dll
+E:\visual studio 2015\Projects\BasicRadar\BasicRadar\bin\Release\es\System.Windows.Interactivity.resources.dll
+E:\visual studio 2015\Projects\BasicRadar\BasicRadar\bin\Release\fr\System.Windows.Interactivity.resources.dll
+E:\visual studio 2015\Projects\BasicRadar\BasicRadar\bin\Release\it\System.Windows.Interactivity.resources.dll
+E:\visual studio 2015\Projects\BasicRadar\BasicRadar\bin\Release\ja\System.Windows.Interactivity.resources.dll
+E:\visual studio 2015\Projects\BasicRadar\BasicRadar\bin\Release\ko\System.Windows.Interactivity.resources.dll
+E:\visual studio 2015\Projects\BasicRadar\BasicRadar\bin\Release\ru\System.Windows.Interactivity.resources.dll
+E:\visual studio 2015\Projects\BasicRadar\BasicRadar\bin\Release\zh-Hans\System.Windows.Interactivity.resources.dll
+E:\visual studio 2015\Projects\BasicRadar\BasicRadar\bin\Release\zh-Hant\System.Windows.Interactivity.resources.dll
+E:\visual studio 2015\Projects\BasicRadar\BasicRadar\obj\Release\BasicRadar.Form1.resources
+E:\visual studio 2015\Projects\BasicRadar\BasicRadar\obj\Release\BasicRadar.csproj.GenerateResource.Cache
+E:\visual studio 2015\Projects\BasicRadar\BasicRadar\obj\Release\BasicRadar.dll
+E:\visual studio 2015\Projects\BasicRadar\BasicRadar\obj\Release\BasicRadar.pdb
+E:\visual studio 2015\Projects\BasicRadar\BasicRadar\obj\Release\BasicRadar.csprojResolveAssemblyReference.cache
+C:\ab\Plugins\BasicRadar\BasicRadar\obj\Release\BasicRadar.csprojResolveAssemblyReference.cache
+C:\ab\Plugins\BasicRadar\BasicRadar\obj\Release\BasicRadar.Form1.resources
+C:\ab\Plugins\BasicRadar\BasicRadar\obj\Release\BasicRadar.csproj.GenerateResource.Cache
+C:\ab\Plugins\BasicRadar\BasicRadar\bin\Release\ArcheBuddy.dll
+C:\ab\Plugins\BasicRadar\BasicRadar\bin\Release\System.Windows.Interactivity.dll
+C:\ab\Plugins\BasicRadar\BasicRadar\bin\Release\Buddy.Store.dll
+C:\ab\Plugins\BasicRadar\BasicRadar\bin\Release\Buddy.Auth.dll
+C:\ab\Plugins\BasicRadar\BasicRadar\bin\Release\de\System.Windows.Interactivity.resources.dll
+C:\ab\Plugins\BasicRadar\BasicRadar\bin\Release\en\System.Windows.Interactivity.resources.dll
+C:\ab\Plugins\BasicRadar\BasicRadar\bin\Release\es\System.Windows.Interactivity.resources.dll
+C:\ab\Plugins\BasicRadar\BasicRadar\bin\Release\fr\System.Windows.Interactivity.resources.dll
+C:\ab\Plugins\BasicRadar\BasicRadar\bin\Release\it\System.Windows.Interactivity.resources.dll
+C:\ab\Plugins\BasicRadar\BasicRadar\bin\Release\ja\System.Windows.Interactivity.resources.dll
+C:\ab\Plugins\BasicRadar\BasicRadar\bin\Release\ko\System.Windows.Interactivity.resources.dll
+C:\ab\Plugins\BasicRadar\BasicRadar\bin\Release\ru\System.Windows.Interactivity.resources.dll
+C:\ab\Plugins\BasicRadar\BasicRadar\bin\Release\zh-Hans\System.Windows.Interactivity.resources.dll
+C:\ab\Plugins\BasicRadar\BasicRadar\bin\Release\zh-Hant\System.Windows.Interactivity.resources.dll
+C:\ab\Plugins\BasicRadar\BasicRadar\bin\Release\OpenTK.dll
+C:\ab\Plugins\BasicRadar\BasicRadar\bin\Release\OpenTK.GLControl.dll
+C:\ab\Plugins\BasicRadar\BasicRadar\bin\Release\OpenTK.Compatibility.dll
+C:\ab\Plugins\BasicRadar\BasicRadar\bin\Release\WTFRadar.dll
+C:\ab\Plugins\BasicRadar\BasicRadar\bin\Release\WTFRadar.pdb
+C:\ab\Plugins\BasicRadar\BasicRadar\obj\Release\WTFRadar.Properties.Resources.resources
+C:\ab\Plugins\BasicRadar\BasicRadar\obj\Release\WTFRadar.dll
+C:\ab\Plugins\BasicRadar\BasicRadar\obj\Release\WTFRadar.pdb
