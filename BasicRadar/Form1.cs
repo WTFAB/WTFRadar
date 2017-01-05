@@ -13,7 +13,7 @@ namespace BasicRadar
     {
         Self me;
         DefaultClass main;
-        Pen p3 = new Pen(Color.LightGray, 2f);
+        Pen p3 = new Pen(Color.Green, 2f);
 
      
 
@@ -23,7 +23,49 @@ namespace BasicRadar
             this.main = main;
             InitializeComponent();
         }
+        bool Islooted = false;
 
+        
+        /// <summary>
+        /// 
+        /// Vars For State Machine between summary's
+        /// Get_States() first to use our list
+        /// 
+        /// </summary>
+        /// State Vars Below For Auto chest loot 2.0
+        //State1 -Swiming
+        bool State_is_swim = false;
+        //State2 -Swiming_Down 
+        bool State_is_swim_down = false;
+        //State3 -Swiming_Up 
+        bool State_is_swim_up = false;
+        //State4 -Found_Chest
+        bool State_is_Chest_Found = false;
+        //State5  -Breathing Head Above water 
+        bool State_is_Breathing = false;
+        //State6 -Using Dahuta bubble?
+        bool State_is_Undrwtr_Breathing = false;
+        //State7 - can we loot chest
+        bool State_is_Chest_lootable = false;
+        //State8 -
+        bool State_is_ = false;
+
+
+
+
+
+
+
+
+
+        /// <summary>
+        /// 
+        /// Vars For State Machine between summary's
+        /// Get_States() first to use our list
+        /// 
+        /// </summary>
+
+        //bool IsSwimfoward = false;
         //Draw Line Pointing North
         public void drawSelf()
         {
@@ -87,8 +129,10 @@ namespace BasicRadar
                             if (main.isEnemy(obj) == true && main.isStealth(pName) != true)
                             {
                                 textBox2.Text = pName + " Was Found " + pDist + "m";
+                           
                                 drawPoint(halfX + vectorRotate.Item1, halfY + vectorRotate.Item2, Color.Red);
                                 drawString(pName + " " + pDist + "m", (halfX + (int)(vectorRotate.Item1 - (8 * (pName.Count() / 2)))), (halfY + (vectorRotate.Item2 + 15)), Brushes.RosyBrown);  
+
                             }
 
                             if (main.isStealth(pName) == true && main.isEnemy(obj) == true)
@@ -135,6 +179,7 @@ namespace BasicRadar
                                 textBox2.Text = pName + " Was Found " + pDist + "m";
                                 drawPoint(halfX + vectorRotate.Item1, halfY + vectorRotate.Item2, Color.Green);
                                 drawString(pName + " " + pDist + "m", (halfX + (int)(vectorRotate.Item1 - (8 * (pName.Count() / 2)))), (halfY + (vectorRotate.Item2 + 15)), Brushes.DarkGreen);
+
                             }
                         }
                     }
@@ -280,9 +325,7 @@ namespace BasicRadar
 
         }
         ////////////////////////////////////////////////////////////////
-
-        //Expermental
-        private void getChest()
+        private void AutoFarm()
         {
             foreach (var obj in main.getDoodads())
                 if (main.IsSafeForRadar(obj) == true)
@@ -291,32 +334,172 @@ namespace BasicRadar
                     {
                         if (obj.name != me.name)
                         {
-                            int halfX = pictureBox1.ClientRectangle.Width / 2;
-                            int halfY = pictureBox1.ClientRectangle.Height / 2;
+                            
                             string pName = obj.name;
                             string pDist = ((int)main.dist(obj)).ToString();
                             int aX = (int)me.X;
                             int aY = (int)me.Y;
                             int bX = (int)obj.X;
                             int bY = (int)obj.Y;
-                            double angle = findAngle(me.turnAngle);
-                            Tuple<int, int> vector = relativeVector(aX, aY, bX, bY);
-                            Tuple<int, int> vectorRotate = rotate_point(vector.Item1, vector.Item2, 0, 0, angle);
-                            
-                            //set name to event chest name
+                        
+                            string strbX = bX.ToString();
+                            string strbY = bY.ToString();
+                            string straY = aY.ToString();
+                            string straX = aX.ToString();
+                            int ppdist = Int32.Parse(pDist);
+
+
+                            if (pName == "Recovered Treasure Chest")
+                            {
+                                if (me.Z == obj.Z)
+                                {
+                                    main.SwimUp(false);
+
+                                }
+                                main.TurnDirectly(obj);
+                                obj.getUseSkills();
+                                //main.SwimUp(false);
+                                main.UseDoodadSkill("Pick up an item.", obj, true);
+                                Thread.Sleep(1000);
+
+                            }
+
                             if (pName == "Sunken Treasure Chest")
                             {
                                 textBox2.Text = pName + " Was Found " + pDist + "m";
-                                 
-                                drawPoint(halfX + vectorRotate.Item1, halfY + vectorRotate.Item2, Color.Pink);
-                                drawString(pName + " " + pDist + "m", (halfX + (int)(vectorRotate.Item1 - (8 * (pName.Count() / 2)))), (halfY + (vectorRotate.Item2 + 15)), Brushes.Blue);
+                                //textBox2.Text = strbX + " Obj X | " + strbY + " obj Y | " + straX + " ME X | " + straY + " me Y";
+                                // drawPoint(halfX + vectorRotate.Item1, halfY + vectorRotate.Item2, Color.Pink);
+                                //drawString(pName + " " + pDist + "m", (halfX + (int)(vectorRotate.Item1 - (8 * (pName.Count() / 2)))), (halfY + (vectorRotate.Item2 + 15)), Brushes.Blue);
+
+
+
+                                if (ppdist <= 140)
+                                {
+                                    
+
+                                        main.TurnDirectly(obj);
+                                        //    main.SwimDown(true);
+                                        //  main.MoveForward(true);
+
+                                        if (Islooted == true)
+                                        {
+                                            main.SwimDown(false);
+                                            main.MoveForward(false);
+                                        }
+                                        if (Islooted == false)
+                                        {
+                                            main.SwimDown(true);
+                                            main.MoveForward(true);
+                                        textBox2.Text = "Moving to " + pName;
+
+                                        }
+                                       
+                                       if (pDist == "0")
+                                        {
+                                        main.SwimDown(false);
+                                     
+                                        main.MoveForward(false);
+                                            Islooted = true;
+                                            //IsSwimfoward = true;
+                                        }
+                                    if (me.Z >= 95)
+                                    {
+                                        main.SwimUp(false);
+                                    }
+                                    if (me.Z == obj.Z)
+                                        {
+                                            main.SwimDown(false);
+
+                                        }
+                                        if (Islooted == true)
+                                        {
+                                        // we loot here
+                                        textBox2.Text = "Looting " + pName;
+                                        obj.getUseSkills();
+                                        main.UseDoodadSkill("Spend up to 25 Labor to salvage the debris of the wrecked ship.",obj , true);
+                                        Thread.Sleep(1000);
+                                        main.SwimUp(true);
+                                      
+                                        if (me.Z == 99)
+                                        {
+
+                                            //link to recoverd chest function
+
+                                            Islooted = false;
+                                        }
+                                          if (pName == "Recoverd Treasure Chest")
+                            {
+                                if (me.Z == obj.Z)
+                                {
+                                    main.SwimUp(false);
+
+                                }
+                                obj.getUseSkills();
+                                            textBox2.Text = "Moving to " + pName + " And Looting";
+                                            main.UseDoodadSkill("Pick up an item.", obj, true);
+                                Thread.Sleep(1000);
+                                            main.SwimUp(false);
+                                            Islooted = false;
+                                        }
+
+
+                                    }
+
+
+
+                                    }
+
+
+
                             }
-
-
-
                         }
-                    }
 
+                    }
+                }
+        }
+        //Expermental
+        private void getChest()
+        {
+            foreach (var obj in main.getDoodads())
+                if (main.IsSafeForRadar(obj) == true)
+                {
+                    if (obj.type == BotTypes.DoodadObject)
+                    {
+                        
+                            if (obj.name != me.name)
+                            {
+                            if (obj.phaseId == 8356)
+                            {
+                                int halfX = pictureBox1.ClientRectangle.Width / 2;
+                                int halfY = pictureBox1.ClientRectangle.Height / 2;
+                                string pName = obj.name;
+                                string pDist = ((int)main.dist(obj)).ToString();
+                                int aX = (int)me.X;
+                                int aY = (int)me.Y;
+                                int bX = (int)obj.X;
+                                int bY = (int)obj.Y;
+                                double angle = findAngle(me.turnAngle);
+                                Tuple<int, int> vector = relativeVector(aX, aY, bX, bY);
+                                Tuple<int, int> vectorRotate = rotate_point(vector.Item1, vector.Item2, 0, 0, angle);
+
+                                //set name to event chest name
+                                if (pName == "Sunken Treasure Chest")
+                                {
+                                    if (checkBox11.Checked == false)
+                                    {
+                                        textBox2.Text = pName + " Was Found " + pDist + "m";
+                                    }
+
+                                    drawPoint(halfX + vectorRotate.Item1, halfY + vectorRotate.Item2, Color.Pink);
+                                    drawString(pName + " " + pDist + "m", (halfX + (int)(vectorRotate.Item1 - (8 * (pName.Count() / 2)))), (halfY + (vectorRotate.Item2 + 15)), Brushes.Blue);
+                                }
+
+
+
+                            }
+                        }
+
+                    }
                 }
         }
 
@@ -355,7 +538,40 @@ namespace BasicRadar
 
                 }
         }
+        private void getbubs()
+        {
+            foreach (var obj in main.getDoodads())
+                if (main.IsSafeForRadar(obj) == true)
+                {
+                    if (obj.type == BotTypes.DoodadObject)
+                    {
+                        if (obj.name != me.name)
+                        {
+                            int halfX = pictureBox1.ClientRectangle.Width / 2;
+                            int halfY = pictureBox1.ClientRectangle.Height / 2;
+                            string pName = obj.name;
+                            string pDist = ((int)main.dist(obj)).ToString();
+                            int aX = (int)me.X;
+                            int aY = (int)me.Y;
+                            int bX = (int)obj.X;
+                            int bY = (int)obj.Y;
+                            double angle = findAngle(me.turnAngle);
+                            Tuple<int, int> vector = relativeVector(aX, aY, bX, bY);
+                            Tuple<int, int> vectorRotate = rotate_point(vector.Item1, vector.Item2, 0, 0, angle);
 
+                            if (pName == "Buried Ancient Cargo Ship")
+                            {
+                                drawPoint(halfX + vectorRotate.Item1, halfY + vectorRotate.Item2, Color.Pink);
+                                drawString(pName + " " + pDist + "m", (halfX + (int)(vectorRotate.Item1 - (8 * (pName.Count() / 2)))), (halfY + (vectorRotate.Item2 + 15)), Brushes.Blue);
+                            }
+
+
+
+                        }
+                    }
+
+                }
+        }
 
         private void getGoldenChest()
         {
@@ -463,6 +679,8 @@ namespace BasicRadar
         {
             timer1.Enabled = false;
             timer2.Enabled = false;
+            FarmTimer.Enabled = false;
+
         }
 
 
@@ -485,7 +703,7 @@ namespace BasicRadar
             }
             if (checkBox3.Checked)
             {
-                getVehicles();
+                getbubs();
             }
             if (checkBox4.Checked)
             {
@@ -528,13 +746,13 @@ namespace BasicRadar
 
         
 
-           // drawSelf();
-           // drawPoint(halfX + 0, halfY + 0, Color.White);
-
+            drawSelf();
+            // drawPoint(halfX + 0, halfY + 0, Color.White);
+            int tmp = me.laborPoints;
+            string str = Convert.ToString(tmp);
             label1.Text = "Name: " + me.name;
-            label2.Text = "X " + me.X + "   |   " + "Y " + me.Y + "   |   " + "Z " + me.Z;
-
-            Thread.Sleep(2);
+            label2.Text = "Player Pos: " + "X " + me.X + "   |   " + "Y " + me.Y + "   |   " + "Z " + me.Z;
+            label16.Text = "Labor: " + str;
         }
 
         private void checkBox7_CheckedChanged(object sender, EventArgs e)
@@ -567,6 +785,7 @@ namespace BasicRadar
             {
                 if (checkBox9.Checked == true)
                 {
+                    checkBox10.Checked = false;
                     //fast refresh
                     timer1.Interval = 100;
                     timer2.Interval = 100;
@@ -589,9 +808,11 @@ namespace BasicRadar
         {
             if (checkBox10.Checked == true)
             {
+                checkBox9.Checked = false;
+
                 //slow refresh
-                timer1.Interval = 250;
-                timer2.Interval = 250;
+                timer1.Interval = 550;
+                timer2.Interval = 550;
             }
             if (checkBox10.Checked == false)
             {
@@ -599,6 +820,79 @@ namespace BasicRadar
                 checkBox9.Checked = true;
 
             }
+
+        }
+
+        private void checkBox6_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox6.Checked == false)
+            {
+                groupBox2.Visible = false;
+            }
+            if (checkBox6.Checked == true)
+            {
+                groupBox2.Visible = true;
+            }
+        }
+
+        private void FarmTimer_Tick(object sender, EventArgs e)
+        {
+            AutoFarm();
+            //FarmTimer.Enabled = false;
+           // if (IsSwimfoward == true)
+          //  { main.MoveForward(false); }
+          //  if (IsSwimfoward == true)
+           // { main.MoveForward(false); }
+        }
+
+        private void checkBox11_CheckedChanged(object sender, EventArgs e)
+        {
+          
+            if (checkBox11.Checked == true)
+            {
+                FarmTimer.Enabled = true;
+
+            }
+            if (checkBox11.Checked == false)
+            {
+                main.MoveForward(false);
+                main.SwimDown(false);
+                main.SwimUp(false);
+                FarmTimer.Enabled = false;
+
+            }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+
+            if (label17.ForeColor == Color.Red)
+            {
+                label17.ForeColor = Color.LimeGreen;
+            }
+
+            if (label17.ForeColor == Color.LimeGreen)
+            {
+                label17.ForeColor = Color.Blue;
+            }
+
+            if (label17.ForeColor == Color.Blue)
+            {
+                label17.ForeColor = Color.Red;
+            }
+
+            public void Get_States()
+        {
+            //grab data and apply to variables
+
+
+
+        }
 
         }
     }
