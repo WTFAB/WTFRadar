@@ -15,7 +15,7 @@ namespace BasicRadar
         DefaultClass main;
         Pen p3 = new Pen(Color.Green, 2f);
 
-     
+
 
         public Form1(DefaultClass main, Self me)
         {
@@ -25,7 +25,7 @@ namespace BasicRadar
         }
         bool Islooted = false;
 
-        
+
         /// <summary>
         /// 
         /// Vars For State Machine between summary's
@@ -124,14 +124,14 @@ namespace BasicRadar
                             double angle = findAngle(me.turnAngle);
                             Tuple<int, int> vector = relativeVector(aX, aY, bX, bY);
                             Tuple<int, int> vectorRotate = rotate_point(vector.Item1, vector.Item2, 0, 0, angle);
-                            
-                            
+
+
                             if (main.isEnemy(obj) == true && main.isStealth(pName) != true)
                             {
                                 textBox2.Text = pName + " Was Found " + pDist + "m";
-                           
+
                                 drawPoint(halfX + vectorRotate.Item1, halfY + vectorRotate.Item2, Color.Red);
-                                drawString(pName + " " + pDist + "m", (halfX + (int)(vectorRotate.Item1 - (8 * (pName.Count() / 2)))), (halfY + (vectorRotate.Item2 + 15)), Brushes.RosyBrown);  
+                                drawString(pName + " " + pDist + "m", (halfX + (int)(vectorRotate.Item1 - (8 * (pName.Count() / 2)))), (halfY + (vectorRotate.Item2 + 15)), Brushes.RosyBrown);
 
                             }
 
@@ -142,7 +142,7 @@ namespace BasicRadar
                                 drawString(pName + " " + pDist + "m", (halfX + (int)(vectorRotate.Item1 - (8 * (pName.Count() / 2)))), (halfY + (vectorRotate.Item2 + 15)), Brushes.MediumPurple);
                             }
 
-                            
+
                         }
                     }
 
@@ -172,7 +172,7 @@ namespace BasicRadar
                             double angle = findAngle(me.turnAngle);
                             Tuple<int, int> vector = relativeVector(aX, aY, bX, bY);
                             Tuple<int, int> vectorRotate = rotate_point(vector.Item1, vector.Item2, 0, 0, angle);
-                            
+
 
                             if (main.isEnemy(obj) == false && main.isStealth(pName) != true)
                             {
@@ -248,7 +248,7 @@ namespace BasicRadar
                             double angle = findAngle(me.turnAngle);
                             Tuple<int, int> vector = relativeVector(aX, aY, bX, bY);
                             Tuple<int, int> vectorRotate = rotate_point(vector.Item1, vector.Item2, 0, 0, angle);
-                            
+
 
                             if (main.isEnemy(obj) == false)
                             {
@@ -260,7 +260,7 @@ namespace BasicRadar
                                 textBox2.Text = pName + " Was Found " + pDist + "m";
                                 drawPoint(halfX + vectorRotate.Item1, halfY + vectorRotate.Item2, Color.Teal);
                                 drawString(pName + " " + pDist + "m", (halfX + (int)(vectorRotate.Item1 - (8 * (pName.Count() / 2)))), (halfY + (vectorRotate.Item2 + 15)), Brushes.SkyBlue);
-                       
+
 
 
                                 textBox2.Text = pName;
@@ -276,8 +276,8 @@ namespace BasicRadar
                                 drawPoint(halfX + vectorRotate.Item1, halfY + vectorRotate.Item2, Color.OrangeRed);
                                 drawString(pName + " " + pDist + "m", (halfX + (int)(vectorRotate.Item1 - (8 * (pName.Count() / 2)))), (halfY + (vectorRotate.Item2 + 15)), Brushes.OrangeRed);
 
-                                
-                              textBox2.Text = pName;
+
+                                textBox2.Text = pName;
                             }
 
 
@@ -334,14 +334,14 @@ namespace BasicRadar
                     {
                         if (obj.name != me.name)
                         {
-                            
+
                             string pName = obj.name;
                             string pDist = ((int)main.dist(obj)).ToString();
                             int aX = (int)me.X;
                             int aY = (int)me.Y;
                             int bX = (int)obj.X;
                             int bY = (int)obj.Y;
-                        
+
                             string strbX = bX.ToString();
                             string strbY = bY.ToString();
                             string straY = aY.ToString();
@@ -375,51 +375,51 @@ namespace BasicRadar
 
                                 if (ppdist <= 140)
                                 {
-                                    
 
-                                        main.TurnDirectly(obj);
-                                        //    main.SwimDown(true);
-                                        //  main.MoveForward(true);
 
-                                        if (Islooted == true)
-                                        {
-                                            main.SwimDown(false);
-                                            main.MoveForward(false);
-                                        }
-                                        if (Islooted == false)
-                                        {
-                                            main.SwimDown(true);
-                                            main.MoveForward(true);
+                                    main.TurnDirectly(obj);
+                                    //    main.SwimDown(true);
+                                    //  main.MoveForward(true);
+
+                                    if (Islooted == true)
+                                    {
+                                        main.SwimDown(false);
+                                        main.MoveForward(false);
+                                    }
+                                    if (Islooted == false)
+                                    {
+                                        main.SwimDown(true);
+                                        main.MoveForward(true);
                                         textBox2.Text = "Moving to " + pName;
 
-                                        }
-                                       
-                                       if (pDist == "0")
-                                        {
+                                    }
+
+                                    if (pDist == "0")
+                                    {
                                         main.SwimDown(false);
-                                     
+
                                         main.MoveForward(false);
-                                            Islooted = true;
-                                            //IsSwimfoward = true;
-                                        }
+                                        Islooted = true;
+                                        //IsSwimfoward = true;
+                                    }
                                     if (me.Z >= 95)
                                     {
                                         main.SwimUp(false);
                                     }
                                     if (me.Z == obj.Z)
-                                        {
-                                            main.SwimDown(false);
+                                    {
+                                        main.SwimDown(false);
 
-                                        }
-                                        if (Islooted == true)
-                                        {
+                                    }
+                                    if (Islooted == true)
+                                    {
                                         // we loot here
                                         textBox2.Text = "Looting " + pName;
                                         obj.getUseSkills();
-                                        main.UseDoodadSkill("Spend up to 25 Labor to salvage the debris of the wrecked ship.",obj , true);
+                                        main.UseDoodadSkill("Spend up to 25 Labor to salvage the debris of the wrecked ship.", obj, true);
                                         Thread.Sleep(1000);
                                         main.SwimUp(true);
-                                      
+
                                         if (me.Z == 99)
                                         {
 
@@ -427,17 +427,17 @@ namespace BasicRadar
 
                                             Islooted = false;
                                         }
-                                          if (pName == "Recoverd Treasure Chest")
-                            {
-                                if (me.Z == obj.Z)
-                                {
-                                    main.SwimUp(false);
+                                        if (pName == "Recoverd Treasure Chest")
+                                        {
+                                            if (me.Z == obj.Z)
+                                            {
+                                                main.SwimUp(false);
 
-                                }
-                                obj.getUseSkills();
+                                            }
+                                            obj.getUseSkills();
                                             textBox2.Text = "Moving to " + pName + " And Looting";
                                             main.UseDoodadSkill("Pick up an item.", obj, true);
-                                Thread.Sleep(1000);
+                                            Thread.Sleep(1000);
                                             main.SwimUp(false);
                                             Islooted = false;
                                         }
@@ -447,7 +447,7 @@ namespace BasicRadar
 
 
 
-                                    }
+                                }
 
 
 
@@ -465,9 +465,9 @@ namespace BasicRadar
                 {
                     if (obj.type == BotTypes.DoodadObject)
                     {
-                        
-                            if (obj.name != me.name)
-                            {
+
+                        if (obj.name != me.name)
+                        {
                             if (obj.phaseId == 8356)
                             {
                                 int halfX = pictureBox1.ClientRectangle.Width / 2;
@@ -576,42 +576,42 @@ namespace BasicRadar
         private void getGoldenChest()
         {
 
-          
-            
+
+
         }
 
 
 
         ////////////////////////////////////////////////////////////////
         private double findAngle(int angle)
-         {
+        {
 
-             //COUNTERCLOCKWISE
-             //TEMPangle -= 43;
-             double newAngle = angle * 2.8125;
-             /*angle = (int)(angle * 2.8125);
+            //COUNTERCLOCKWISE
+            //TEMPangle -= 43;
+            double newAngle = angle * 2.8125;
+            /*angle = (int)(angle * 2.8125);
 
-             if (angle > 360)
-                 angle = 360;
+            if (angle > 360)
+                angle = 360;
 
-             angle = angle - 127;
+            angle = angle - 127;
 
-             if (angle > 360)
-             {
-                 int theDiff = angle - 360;
-                 angle = 0 + theDiff;
-             }
-             if (angle < 0)
-                 angle = 360 + angle;
+            if (angle > 360)
+            {
+                int theDiff = angle - 360;
+                angle = 0 + theDiff;
+            }
+            if (angle < 0)
+                angle = 360 + angle;
 
-             return angle;*/
-             //newAngle -= 120.9375;
-             newAngle -= 30;
-             if (newAngle < 0.0)
-                 return newAngle + 360.0;
-             else
-                 return newAngle;
-         }
+            return angle;*/
+            //newAngle -= 120.9375;
+            newAngle -= 30;
+            if (newAngle < 0.0)
+                return newAngle + 360.0;
+            else
+                return newAngle;
+        }
 
         public void drawPoint(int x, int y, Color c)
         {
@@ -671,8 +671,8 @@ namespace BasicRadar
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
-            
+
+
         }
 
         private void Form1_FormClosing(Object sender, FormClosingEventArgs e)
@@ -687,10 +687,10 @@ namespace BasicRadar
 
         private void timer1_Tick_1(object sender, EventArgs e)
         {
-             int halfX = pictureBox1.ClientRectangle.Width / 2;
+            int halfX = pictureBox1.ClientRectangle.Width / 2;
             int halfY = pictureBox1.ClientRectangle.Height / 2;
             pictureBox1.Refresh();
-            drawPoint(halfX + 0, halfY + 0, Color.Green); 
+            drawPoint(halfX + 0, halfY + 0, Color.Green);
             drawSelf();
 
             if (checkBox1.Checked)
@@ -719,16 +719,16 @@ namespace BasicRadar
             }
             if (checkBox7.Checked)
             {
-              //  getGoldenChest();
+                //  getGoldenChest();
             }
             if (checkBox8.Checked)
             {
                 getTSTree();
             }
-        
+
             //Thread.Sleep(10);
 
-          
+
         }
 
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
@@ -738,13 +738,13 @@ namespace BasicRadar
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-           // pictureBox1.Refresh();
+            // pictureBox1.Refresh();
             //pictureBox1.Invalidate();
-           
-            //int halfX = pictureBox1.ClientRectangle.Width / 2;
-           // int halfY = pictureBox1.ClientRectangle.Height / 2;
 
-        
+            //int halfX = pictureBox1.ClientRectangle.Width / 2;
+            // int halfY = pictureBox1.ClientRectangle.Height / 2;
+
+
 
             drawSelf();
             // drawPoint(halfX + 0, halfY + 0, Color.White);
@@ -801,7 +801,7 @@ namespace BasicRadar
 
                 throw;
             }
-            
+
         }
 
         private void checkBox10_CheckedChanged(object sender, EventArgs e)
@@ -839,15 +839,15 @@ namespace BasicRadar
         {
             AutoFarm();
             //FarmTimer.Enabled = false;
-           // if (IsSwimfoward == true)
-          //  { main.MoveForward(false); }
-          //  if (IsSwimfoward == true)
-           // { main.MoveForward(false); }
+            // if (IsSwimfoward == true)
+            //  { main.MoveForward(false); }
+            //  if (IsSwimfoward == true)
+            // { main.MoveForward(false); }
         }
 
         private void checkBox11_CheckedChanged(object sender, EventArgs e)
         {
-          
+
             if (checkBox11.Checked == true)
             {
                 FarmTimer.Enabled = true;
@@ -885,8 +885,9 @@ namespace BasicRadar
             {
                 label17.ForeColor = Color.Red;
             }
+        }
 
-            public void Get_States()
+        public void Get_States()
         {
             //grab data and apply to variables
 
@@ -894,6 +895,6 @@ namespace BasicRadar
 
         }
 
-        }
     }
 }
+
