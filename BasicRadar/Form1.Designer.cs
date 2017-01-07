@@ -440,11 +440,11 @@ namespace BasicRadar
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Virtual DJ", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(2, 0);
+            this.label17.Location = new System.Drawing.Point(3, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(607, 19);
+            this.label17.Size = new System.Drawing.Size(594, 19);
             this.label17.TabIndex = 29;
-            this.label17.Text = "SeaDawg - ToolSet For The Elite Sea Dogs| V0.01|";
+            this.label17.Text = "SeaDawg - ToolSet For The Elite Sea Dogs| V1.1|";
             // 
             // timer3
             // 

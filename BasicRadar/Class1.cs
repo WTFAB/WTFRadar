@@ -13,12 +13,12 @@ namespace DefaultNameSpace
     {
         public static string GetPluginAuthor()
         {
-            return "WTFAB";
+            return "WTFAB(Sarge)";
         }
 
         public static string GetPluginVersion()
         {
-            return "1.0.0.0";
+            return "1.1.0.0";
         }
 
         public static string GetPluginDescription()

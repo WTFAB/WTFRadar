@@ -468,7 +468,7 @@ namespace BasicRadar
 
                         if (obj.name != me.name)
                         {
-                            if (obj.phaseId == 8356)
+                            if (obj.phaseId == 8356 || obj.phaseId == 30179)
                             {
                                 int halfX = pictureBox1.ClientRectangle.Width / 2;
                                 int halfY = pictureBox1.ClientRectangle.Height / 2;
@@ -490,12 +490,39 @@ namespace BasicRadar
                                         textBox2.Text = pName + " Was Found " + pDist + "m";
                                     }
 
-                                    drawPoint(halfX + vectorRotate.Item1, halfY + vectorRotate.Item2, Color.Pink);
-                                    drawString(pName + " " + pDist + "m", (halfX + (int)(vectorRotate.Item1 - (8 * (pName.Count() / 2)))), (halfY + (vectorRotate.Item2 + 15)), Brushes.Blue);
+                                    drawPoint(halfX + vectorRotate.Item1, halfY + vectorRotate.Item2, Color.Blue);
+                                    drawString("ID:" + obj.id + " | " + pName + " | "  + pDist + "m", (halfX + (int)(vectorRotate.Item1 - (8 * (pName.Count() / 2)))), (halfY + (vectorRotate.Item2 + 15)), Brushes.LightBlue);
+                                }
+                              
+
+
+                            }
+                        }
+                        if (obj.phaseId == 30192 || obj.phaseId == 8353)
+                        {
+                           
+                            int halfX = pictureBox1.ClientRectangle.Width / 2;
+                            int halfY = pictureBox1.ClientRectangle.Height / 2;
+                            string pName = obj.name;
+                            string pDist = ((int)main.dist(obj)).ToString();
+                            int aX = (int)me.X;
+                            int aY = (int)me.Y;
+                            int bX = (int)obj.X;
+                            int bY = (int)obj.Y;
+                            double angle = findAngle(me.turnAngle);
+                            Tuple<int, int> vector = relativeVector(aX, aY, bX, bY);
+                            Tuple<int, int> vectorRotate = rotate_point(vector.Item1, vector.Item2, 0, 0, angle);
+
+                            //set name to event chest name
+                            if (pName == "Recovered Treasure Chest")
+                            {
+                                if (checkBox11.Checked == false)
+                                {
+                                    textBox2.Text = pName + " Was Found " + pDist + "m";
                                 }
 
-
-
+                                drawPoint(halfX + vectorRotate.Item1, halfY + vectorRotate.Item2, Color.Red);
+                                drawString("ID:" + obj.id + " | " + pName + " | " + pDist + "m", (halfX + (int)(vectorRotate.Item1 - (8 * (pName.Count() / 2)))), (halfY + (vectorRotate.Item2 + 15)), Brushes.LightBlue);
                             }
                         }
 
@@ -629,7 +656,7 @@ namespace BasicRadar
         {
             Graphics g = Graphics.FromHwnd(pictureBox1.Handle);
 
-            using (Font myFont = new Font("Arial", 12))
+            using (Font myFont = new Font("Arial", 10))
             {
                 Point dPoint = new Point(a, (pictureBox1.Height - b));
                 dPoint.X = dPoint.X - 2;
@@ -838,6 +865,7 @@ namespace BasicRadar
         private void FarmTimer_Tick(object sender, EventArgs e)
         {
             AutoFarm();
+            FarmTimer.Enabled = false;
             //FarmTimer.Enabled = false;
             // if (IsSwimfoward == true)
             //  { main.MoveForward(false); }
